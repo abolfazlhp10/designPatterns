@@ -1,5 +1,6 @@
 <?php
 
+use App\DesignPatterns\Builder\BurgerBuilder;
 use Illuminate\Support\Facades\Route;
 use App\DesignPatterns\FactoryMethod\DeveloperManager;
 use App\DesignPatterns\SimpleFactory\WindowFactory;
@@ -35,4 +36,11 @@ Route::get('/abstractFactory',function(){
     $ironDoor->getDescription();
     $welder->getDescription();
 
+});
+
+Route::get('/builder',function(){
+
+    $burgerBuilder=(new BurgerBuilder(10))->addLettuce()->addCheese()->build();
+
+    dd($burgerBuilder);
 });
