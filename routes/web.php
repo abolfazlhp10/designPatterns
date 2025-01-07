@@ -54,3 +54,10 @@ Route::get('/singleton', function () {
 
 });
 
+Route::get('/bridge',function(){
+
+    $about=new \App\DesignPatterns\Bridge\About(new \App\DesignPatterns\Bridge\DarkTheme());
+    $about->getContent();
+
+});
+
