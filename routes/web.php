@@ -10,6 +10,9 @@ use App\DesignPatterns\Singleton\Test;
 use App\DesignPatterns\Composite\Organization;
 use App\DesignPatterns\Composite\Developer;
 use App\DesignPatterns\Composite\Designer;
+use App\DesignPatterns\Decorator\SimpleCoffee;
+use App\DesignPatterns\Decorator\MilkCoffee;
+use App\DesignPatterns\Decorator\WhipCoffee;
 
 Route::get('/simpleFactory', function () {
 
@@ -78,4 +81,23 @@ Route::get('/composite', function () {
 
     echo $organization->getNetSalaries();
 });
+
+Route::get('/decorator',function(){
+
+    $simpleCoffee=new SimpleCoffee();
+    echo $simpleCoffee->getDescription()."<br>";
+    echo $simpleCoffee->getPrice()."<br>";
+
+
+    $milkCoffee=new MilkCoffee($simpleCoffee);
+    echo $milkCoffee->getDescription()."<br>";
+    echo $milkCoffee->getPrice()."<br>";
+
+
+    $whipCoffee=new WhipCoffee($milkCoffee);
+    echo $whipCoffee->getDescription();
+    echo $whipCoffee->getPrice()."<br>";
+
+});
+
 
