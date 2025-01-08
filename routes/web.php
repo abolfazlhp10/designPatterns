@@ -69,8 +69,8 @@ Route::get('/bridge', function () {
 
 Route::get('/composite', function () {
 
-    $developer=new Developer();
-    $designer=new Designer();
+    $developer = new Developer();
+    $designer = new Designer();
 
 
     $organization = new Organization();
@@ -82,22 +82,26 @@ Route::get('/composite', function () {
     echo $organization->getNetSalaries();
 });
 
-Route::get('/decorator',function(){
+Route::get('/decorator', function () {
 
-    $simpleCoffee=new SimpleCoffee();
-    echo $simpleCoffee->getDescription()."<br>";
-    echo $simpleCoffee->getPrice()."<br>";
-
-
-    $milkCoffee=new MilkCoffee($simpleCoffee);
-    echo $milkCoffee->getDescription()."<br>";
-    echo $milkCoffee->getPrice()."<br>";
+    $simpleCoffee = new SimpleCoffee();
+    echo $simpleCoffee->getDescription() . "<br>";
+    echo $simpleCoffee->getPrice() . "<br>";
 
 
-    $whipCoffee=new WhipCoffee($milkCoffee);
+    $milkCoffee = new MilkCoffee($simpleCoffee);
+    echo $milkCoffee->getDescription() . "<br>";
+    echo $milkCoffee->getPrice() . "<br>";
+
+
+    $whipCoffee = new WhipCoffee($milkCoffee);
     echo $whipCoffee->getDescription();
-    echo $whipCoffee->getPrice()."<br>";
+    echo $whipCoffee->getPrice() . "<br>";
 
+});
+
+Route::get('/facade', function () {
+    \App\DesignPatterns\Facade\FishFacade::swim();
 });
 
 
