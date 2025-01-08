@@ -7,6 +7,9 @@ use App\DesignPatterns\SimpleFactory\WindowFactory;
 use App\DesignPatterns\AbstractFactory\WoodenDoorFactory;
 use App\DesignPatterns\AbstractFactory\IronDoorFactory;
 use App\DesignPatterns\Singleton\Test;
+use App\DesignPatterns\Composite\Organization;
+use App\DesignPatterns\Composite\Developer;
+use App\DesignPatterns\Composite\Designer;
 
 Route::get('/simpleFactory', function () {
 
@@ -54,10 +57,25 @@ Route::get('/singleton', function () {
 
 });
 
-Route::get('/bridge',function(){
+Route::get('/bridge', function () {
 
-    $about=new \App\DesignPatterns\Bridge\About(new \App\DesignPatterns\Bridge\DarkTheme());
+    $about = new \App\DesignPatterns\Bridge\About(new \App\DesignPatterns\Bridge\DarkTheme());
     $about->getContent();
 
+});
+
+Route::get('/composite', function () {
+
+    $developer=new Developer();
+    $designer=new Designer();
+
+
+    $organization = new Organization();
+
+    $organization->addEmployee($designer);
+    $organization->addEmployee($developer);
+
+
+    echo $organization->getNetSalaries();
 });
 
