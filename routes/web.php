@@ -104,4 +104,12 @@ Route::get('/facade', function () {
     \App\DesignPatterns\Facade\FishFacade::swim();
 });
 
+Route::get('proxy', function () {
+
+    (new \App\DesignPatterns\Proxy\LabDoor())->open();
+
+//   $door=new \App\DesignPatterns\Proxy\SecuredDoor(new \App\DesignPatterns\Proxy\LabDoor());
+//   $door->open('secret');
+
+});
 
