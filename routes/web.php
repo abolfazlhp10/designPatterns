@@ -113,3 +113,32 @@ Route::get('proxy', function () {
 
 });
 
+Route::get('chainOfResponsibility', function () {
+
+    $bank = new \App\DesignPatterns\ChainOfResponsibility\Bank(1000);
+    $bitcoin = new \App\DesignPatterns\ChainOfResponsibility\Bitcoin(1500);
+    $paypal = new \App\DesignPatterns\ChainOfResponsibility\PayPal(2000);
+
+
+    $bank->setNext($bitcoin);
+    $bitcoin->setNext($paypal);
+
+    if ($bank->pay(1500)) {
+
+    } elseif ($bitcoin->pay(1500)) {
+
+    } elseif ($paypal->pay(1500)){
+
+    }
+
+
+});
+
+Route::get('/command',function(){
+
+   $remote=new \App\DesignPatterns\Command\RemoteControl();
+   $remote->submit(new \App\DesignPatterns\Command\TurnOff(new \App\DesignPatterns\Command\Bulb()));
+
+
+});
+
